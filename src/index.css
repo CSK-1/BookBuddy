@@ -10,4 +10,15 @@ body {
   margin-right: 10px;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: rgb(212, 189, 212);
+}
+
+.bookslist {
+  padding-left: 30px;
+}
+
 /* Add your own custom styles here */
