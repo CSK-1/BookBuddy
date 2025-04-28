@@ -14,11 +14,26 @@ nav {
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  background-color: rgb(212, 189, 212);
+  background-color: #d4bdd4;
 }
 
 .bookslist {
   padding-left: 30px;
+  padding-right: 30px;
 }
 
-/* Add your own custom styles here */
+button {
+  border-radius: 6px;
+  background-color: #e2cfe2;
+}
+
+button:hover {
+  background-color: #7e4e7e;
+  color: white;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

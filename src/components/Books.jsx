@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function AllBooks({ setBook, searchTerm }) {
 	const [books, setBooks] = useState([]);
+    const navigate = useNavigate();
 
 	useEffect(() => {
 		const getBooks = async () => {
@@ -17,7 +18,6 @@ function AllBooks({ setBook, searchTerm }) {
 	}, []);
 
 	const handleClick = (book) => {
-		setBook(book);
 		navigate(`/books/${book.id}`);
 	};
 

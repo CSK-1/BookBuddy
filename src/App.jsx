@@ -2,11 +2,21 @@ import { useState } from "react";
 import { Routes, Route, Link } from 'react-router-dom'
 import bookLogo from "./assets/books.png";
 import AllBooks from "./components/Books";
+import SingleBook from "./components/SingleBook";
+import LogIn from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
 	const [token, setToken] = useState(null);
-	const [book, setBook] = useState();
 	const [searchTerm, setSearchTerm] = useState("");
+
+  let navBar = (
+			<Link to="/login">Log In</Link>
+	);
+
+	if (!!token) {
+		navBar = <Link to="/account">Account</Link>;
+	}
 
 	return (
 		<>
@@ -19,16 +29,17 @@ function App() {
 					onChange={(e) => setSearchTerm(e.target.value)}
 					style={{ marginLeft: "1rem", flexGrow: 1, maxWidth: "300px" }}
 				/>
-				<Link to="/login">Log In</Link>
+				{navBar}
 			</nav>
 			<h1>
 				<img id="logo-image" src={bookLogo} />
 				Library App
 			</h1>
       <Routes>
-        <Route path="/" element={<AllBooks setBook={setBook} searchTerm={searchTerm}/>}/>
-        {/* <Route path="/books/:id" element={<SingleBook/>}/>
-        <Route path="/login" element={<LogIn/>}/> */}
+        <Route path="/" element={<AllBooks searchTerm={searchTerm}/>}/>
+        <Route path="/books/:id" element={<SingleBook/>}/>
+        <Route path="/login" element={<LogIn setToken={setToken} />} />
+				<Route path="/register" element={<Register setToken={setToken} />} />
       </Routes>
 		</>
 	);
