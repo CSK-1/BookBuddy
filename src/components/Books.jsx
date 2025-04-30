@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 function AllBooks({ setBook, searchTerm }) {
 	const [books, setBooks] = useState([]);
-	const [message, setMessage] = useState("");
 	const navigate = useNavigate();
 
 	const savedToken = localStorage.getItem("token");

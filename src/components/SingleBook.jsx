@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 
 function SingleBook() {
 	const [currentBook, setCurrentBook] = useState(null);
-	const [message, setMessage] = useState("");
 
 	const { id } = useParams();
 

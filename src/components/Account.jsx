@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Account({ token, setTokenState }) {
-	const [myBooks, setMyBooks] = useState();
 	const [myName, setMyName] = useState("");
 	const [myReservations, setMyReservations] = useState([]);
 	const navigate = useNavigate();
