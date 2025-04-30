@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Register({ setToken }) {
+function Register({ setTokenState }) {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [email, setEmail] = useState("");
@@ -27,7 +27,8 @@ function Register({ setToken }) {
 				}
 			);
 			const result = await response.json();
-			setToken(result.token);
+			setTokenState(result.token);
+			localStorage.setItem("token", result.token);
 			navigate("/");
 		} catch (error) {
 			console.error("Something went wrong with registration!", error);
