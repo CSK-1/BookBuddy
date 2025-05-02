@@ -6,19 +6,11 @@ import SingleBook from "./components/SingleBook";
 import LogIn from "./components/Login";
 import Register from "./components/Register";
 import Account from "./components/Account";
+import Navigations from "./components/Navigations";
 
 function App() {
 	const [token, setTokenState] = useState(null);
 	const [searchTerm, setSearchTerm] = useState("");
-
-	const setToken = (newToken) => {
-		setTokenState(newToken);
-		if (newToken) {
-			localStorage.setItem("token", newToken);
-		} else {
-			localStorage.removeItem("token");
-		}
-	};
 
 	useEffect(() => {
 		const savedToken = localStorage.getItem("token");
@@ -27,31 +19,15 @@ function App() {
 		}
 	}, []);
 
-	let navBar = <Link to="/login">Log In</Link>;
-
-	if (!!token) {
-		navBar = <Link to="/account">Account</Link>;
-	}
-
 	return (
 		<>
-			<nav>
-				<Link to="/">Home</Link>
-				<input
-					type="text"
-					placeholder="Search book titles..."
-					value={searchTerm}
-					onChange={(e) => setSearchTerm(e.target.value)}
-					style={{ marginLeft: "1rem", flexGrow: 1, maxWidth: "300px" }}
-				/>
-				{navBar}
-			</nav>
-			<h1>
+			<Navigations token={token} />
+			<h1 className="title">
 				<img id="logo-image" src={bookLogo} />
-				Library App
+				Book Buddy
 			</h1>
 			<Routes>
-				<Route path="/" element={<AllBooks searchTerm={searchTerm} />} />
+				<Route path="/" element={<AllBooks searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
 				<Route path="/books/:id" element={<SingleBook />} />
 				<Route
 					path="/login"
@@ -63,7 +39,7 @@ function App() {
 				/>
 				<Route
 					path="/account"
-					element={<Account token={token} setTokenState={setTokenState} />}
+					element={<Account setTokenState={setTokenState} />}
 				/>
 			</Routes>
 		</>

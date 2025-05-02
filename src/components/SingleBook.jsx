@@ -52,12 +52,12 @@ function SingleBook() {
 
 	return (
 		<>
-			<div className="bookslist">
+			<div className="singlebook">
 				<h3>{currentBook.title}</h3>
 				<img
 					src={currentBook.coverimage}
 					alt={currentBook.titlee}
-					style={{ height: "400px" }}
+					className="bookcover"
 				/>
 				<p>By {currentBook.author}</p>
 				<p>Description: {currentBook.description}</p>

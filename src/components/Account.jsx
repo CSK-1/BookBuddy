@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Account({ token, setTokenState }) {
+function Account({ setTokenState }) {
 	const [myName, setMyName] = useState("");
 	const [myReservations, setMyReservations] = useState([]);
 	const navigate = useNavigate();
@@ -70,11 +70,11 @@ function Account({ token, setTokenState }) {
 					? `Here are your current book reservations:`
 					: "You do not have any book reservations at this time."}
 			</p>
-			<div>
+			<div className="bookslist">
 				{myReservations.map((book) => (
 					<div key={book.id}>
 						<h3>{book.title}</h3>
-						<img src={book?.coverimage} style={{ height: "400px" }} />
+						<img src={book?.coverimage} className="bookcover" />
 						<p>By {book.author}</p>
 						<button onClick={() => handleReservationClick(book)}>
 							Remove Reservation
@@ -82,7 +82,7 @@ function Account({ token, setTokenState }) {
 					</div>
 				))}
 			</div>
-			<button onClick={handleClick}>Log Out</button>
+			<button onClick={handleClick} className="logout">Log Out</button>
 		</div>
 	);
 }

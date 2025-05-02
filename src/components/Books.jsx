@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AllBooks({ setBook, searchTerm }) {
+function AllBooks({ setBook, searchTerm, setSearchTerm }) {
 	const [books, setBooks] = useState([]);
 	const navigate = useNavigate();
 
@@ -54,13 +54,20 @@ function AllBooks({ setBook, searchTerm }) {
 
 	return (
 		<>
-			<div className="bookslist">
-				<h2>Book Buddy Catalog:</h2>
-				<div>
+			<div>
+				<input
+					type="text"
+					placeholder="Search book titles..."
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+					style={{ marginLeft: "1rem", flexGrow: 1, maxWidth: "300px" }}
+				/>
+				<h2 className="title">Catalog:</h2>
+				<div className="bookslist">
 					{filteredBooks.map((book) => (
 						<div key={book.id}>
 							<h3>{book.title}</h3>
-							<img src={book?.coverimage} style={{ height: "400px" }} />
+							<img src={book?.coverimage} className="bookcover" />
 							<p>By {book.author}</p>
 							<button onClick={() => handleDetailsClick(book)}>
 								More Details
